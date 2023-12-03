@@ -2,6 +2,54 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/difference.js":
+/*!**************************************!*\
+  !*** ./src/js/modules/difference.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ difference)
+/* harmony export */ });
+class difference {
+  constructor(oldOfficer, newOfficer, items) {
+    this.oldOfficer = document.querySelector(oldOfficer);
+    this.newOfficer = document.querySelector(newOfficer);
+    this.oldItems = this.oldOfficer.querySelectorAll(items);
+    this.newItems = this.newOfficer.querySelectorAll(items);
+    this.items = items;
+    this.oldCounter = 0;
+    this.newCounter = 0;
+  }
+  bindTriggers(container, items, couter) {
+    container.querySelector('.plus').addEventListener('click', () => {
+      if (couter !== items.length - 2) {
+        items[couter].style.display = 'flex';
+        couter++;
+      } else {
+        items[couter].style.display = 'flex';
+        items[items.length - 1].remove();
+      }
+    });
+  }
+  hideItems(items) {
+    items.forEach((item, i, arr) => {
+      if (i !== arr.length - 1) {
+        item.style.display = 'none';
+      }
+    });
+  }
+  init() {
+    this.hideItems(this.oldItems);
+    this.hideItems(this.newItems);
+    this.bindTriggers(this.oldOfficer, this.oldItems, this.oldCounter);
+    this.bindTriggers(this.newOfficer, this.newItems, this.newCounter);
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/playVideo.js":
 /*!*************************************!*\
   !*** ./src/js/modules/playVideo.js ***!
@@ -153,23 +201,6 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
       this.slides[0].querySelector('.card__controls-arrow').style.opacity = '1';
     }
   }
-
-  // nextSlide() {
-  //     if (this.slides[1].tagName == "BUTTON" && this.slides[2].tagName == "BUTTON") {
-  //         this.container.appendChild(this.slides[0]); // Slide
-  //         this.container.appendChild(this.slides[1]); // Btn
-  //         this.container.appendChild(this.slides[2]); // Btn
-  //         this.decorizeSlides();
-  //     } else if (this.slides[1].tagName == "BUTTON"){
-  //         this.container.appendChild(this.slides[0]); // Slide
-  //         this.container.appendChild(this.slides[1]); // Btn
-  //         this.decorizeSlides();
-  //     } else {
-  //         this.container.appendChild(this.slides[0]);
-  //         this.decorizeSlides();
-  //     }
-  // }
-
   nextSlide() {
     // Move the first slide to the end
     this.container.appendChild(this.slides[0]);
@@ -189,20 +220,6 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
   }
   bindTriggers() {
     this.next.addEventListener('click', () => this.nextSlide());
-
-    // this.prev.addEventListener('click', () => {
-
-    //     for (let i = this.slides.length - 1; i > 0; i--) {
-    //         if (this.slides[i].tagName !== "BUTTON") {
-    //             let active = this.slides[i];
-    //             console.log(active);
-    //             this.container.insertBefore(active, this.slides[0]);
-    //             this.decorizeSlides();
-    //             break;
-    //         }
-    //     }
-    // });
-
     this.prev.addEventListener('click', () => {
       for (let i = this.slides.length - 1; i > 0; i--) {
         if (this.slides[i].tagName !== "BUTTON") {
@@ -348,6 +365,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider/slider-main */ "./src/js/modules/slider/slider-main.js");
 /* harmony import */ var _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider/slider-mini */ "./src/js/modules/slider/slider-mini.js");
 /* harmony import */ var _modules_playVideo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/playVideo */ "./src/js/modules/playVideo.js");
+/* harmony import */ var _modules_difference__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/difference */ "./src/js/modules/difference.js");
+
 
 
 
@@ -383,6 +402,7 @@ window.addEventListener('DOMContentLoaded', () => {
   feedSlider.init();
   const player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_2__["default"]('.showup .play', '.overlay');
   player.init();
+  new _modules_difference__WEBPACK_IMPORTED_MODULE_3__["default"]('.officerold', '.officernew', '.officer__card-item').init();
 });
 })();
 
