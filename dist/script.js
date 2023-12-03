@@ -22,13 +22,13 @@ class difference {
     this.oldCounter = 0;
     this.newCounter = 0;
   }
-  bindTriggers(container, items, couter) {
+  bindTriggers(container, items, counter) {
     container.querySelector('.plus').addEventListener('click', () => {
-      if (couter !== items.length - 2) {
-        items[couter].style.display = 'flex';
-        couter++;
+      if (counter !== items.length - 2) {
+        items[counter].style.display = 'flex';
+        counter++;
       } else {
-        items[couter].style.display = 'flex';
+        items[counter].style.display = 'flex';
         items[items.length - 1].remove();
       }
     });
