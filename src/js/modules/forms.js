@@ -5,9 +5,9 @@ export default class Forms {
      
 
         this.message = {
-            loading: 'Загрузка...',
-            success: 'Спасибо! Скоро мы с вами свяжемся',
-            failure: 'Что-то пошло не так...',
+            loading: 'Loading...',
+            success: 'Thank you! We will contact you soon',
+            failure: 'Something went wrong...',
         };
     
         this.path = 'assets/question.php';
