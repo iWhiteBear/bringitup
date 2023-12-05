@@ -16,7 +16,6 @@ export default class VideoPlaer {
             }
          } catch(e) {}
 
-
             btn.addEventListener('click', () => {
                 if (!btn.closest('.module__video-item') || btn.closest('.module__video-item').getAttribute('data-disabled') !== 'true') {
                     this.activeBtn = btn;
@@ -73,7 +72,6 @@ export default class VideoPlaer {
                     blockedElem.style.filter = 'none';
 
                     blockedElem.setAttribute('data-disabled', 'false');
-
                 }
             }
         } catch(e) {}
